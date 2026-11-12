@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+# cache local des images téléchargées depuis kDrive : jamais dans le repo
+cache/
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.tif
+*.tiff
+*:Zone.Identifier
+.env

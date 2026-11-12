@@ -1,0 +1,8 @@
+{
+  "_doc": "Formats de sortie par canal. largeur/hauteur en px ; hauteur null = proportionnelle (pas de recadrage imposé).",
+  "insta-4x5":   {"largeur": 1080, "hauteur": 1350, "canal": "instagram"},
+  "story-9x16":  {"largeur": 1080, "hauteur": 1920, "canal": "instagram-story"},
+  "entete-16x9": {"largeur": 1920, "hauteur": 1080, "canal": "site"},
+  "article":     {"largeur": 1200, "hauteur": null, "canal": "site"},
+  "og":          {"largeur": 1200, "hauteur": 630,  "canal": "partage-lien"}
+}

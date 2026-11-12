@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Index de la photothèque nawashi.ch",
+  "description": "Seule source de vérité des métadonnées. PROPOSITION v1 — à valider par Flavien.",
+  "type": "object",
+  "required": ["schema_version", "photos"],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": 1},
+    "photos": {"type": "array", "items": {"$ref": "#/$defs/photo"}}
+  },
+  "$defs": {
+    "slug": {"type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"},
+    "date": {"type": "string", "format": "date"},
+    "kdrive_fichier": {
+      "type": "object",
+      "description": "Emplacement sur kDrive : chemin relatif à la racine nawashi-photos/ + id de fichier kDrive.",
+      "required": ["chemin", "id"],
+      "properties": {
+        "chemin": {"type": "string"},
+        "id": {"type": "integer"},
+        "largeur": {"type": "integer"},
+        "hauteur": {"type": "integer"},
+        "octets": {"type": "integer"}
+      }
+    },
+    "photo": {
+      "type": "object",
+      "required": ["id", "type", "fichiers", "largeur", "hauteur", "orientation", "description", "tags", "autorisation", "importe_le", "derives", "usages"],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug", "description": "= nom du fichier original sans .jpg, ex. 2026-11-08-rope-jam-bulle-001"},
+        "type": {"enum": ["photo", "illustration"]},
+        "date_prise": {"$ref": "#/$defs/date", "description": "Lue dans l'EXIF à l'import (l'EXIF n'est jamais écrit)."},
+        "nom_import": {"type": "string", "description": "Nom du fichier tel que déposé dans a-importer/ (traçabilité)."},
+        "sha256": {"type": "string", "description": "Empreinte de l'original, détecte les doublons à l'import."},
+        "fichiers": {
+          "type": "object",
+          "required": ["original", "preview_512", "preview_1000"],
+          "properties": {
+            "original": {"$ref": "#/$defs/kdrive_fichier"},
+            "preview_512": {"$ref": "#/$defs/kdrive_fichier"},
+            "preview_1000": {"$ref": "#/$defs/kdrive_fichier"}
+          }
+        },
+        "largeur": {"type": "integer"},
+        "hauteur": {"type": "integer"},
+        "orientation": {"enum": ["paysage", "portrait", "carre"], "description": "Calculée (carré si ratio entre 0,95 et 1,05)."},
+        "ratio": {"type": "number", "description": "largeur / hauteur, arrondi à 3 décimales."},
+        "description": {"type": "string", "description": "Courte : pose, cadrage, ambiance, zones intéressantes pour un crop (avec position : haut-gauche, centre…)."},
+        "zones": {
+          "type": "array",
+          "description": "Facultatif : zones de crop repérées à l'import, en fractions 0–1 de l'original.",
+          "items": {
+            "type": "object",
+            "required": ["nom", "x", "y", "l", "h"],
+            "properties": {
+              "nom": {"$ref": "#/$defs/slug"},
+              "x": {"type": "number"}, "y": {"type": "number"},
+              "l": {"type": "number"}, "h": {"type": "number"}
+            }
+          }
+        },
+        "tags": {
+          "type": "object",
+          "description": "Valeurs issues de vocabulaire.json uniquement.",
+          "properties": {
+            "plan": {"type": "array", "items": {"type": "string"}},
+            "technique": {"type": "array", "items": {"type": "string"}},
+            "contexte": {"type": ["string", "null"]},
+            "personnes": {"type": "string"},
+            "ambiance": {"type": "array", "items": {"type": "string"}},
+            "lumiere": {"type": "array", "items": {"type": "string"}},
+            "espace-texte": {"enum": ["oui", "non"]},
+            "lieu": {"type": ["string", "null"]}
+          }
+        },
+        "credit": {"type": ["string", "null"], "description": "null = crédit par défaut (compte Instagram de Flavien, config.json)."},
+        "autorisation": {
+          "type": "object",
+          "required": ["statut"],
+          "properties": {
+            "statut": {"enum": ["ecrit-confirme", "retire"], "default": "ecrit-confirme"},
+            "depuis": {"$ref": "#/$defs/date"},
+            "note": {"type": ["string", "null"]}
+          }
+        },
+        "personnes_mentionnees": {
+          "type": "array", "default": [],
+          "description": "Vide par défaut. Rempli uniquement sur demande explicite de Flavien.",
+          "items": {"type": "object", "properties": {"nom": {"type": "string"}, "instagram": {"type": "string"}}}
+        },
+        "source": {"type": ["string", "null"], "description": "Illustration seulement : d'où elle vient (URL ou ouvrage)."},
+        "licence": {
+          "type": ["object", "null"],
+          "description": "Illustration seulement.",
+          "properties": {
+            "nom": {"type": "string"},
+            "attribution_requise": {"type": "boolean"},
+            "attribution": {"type": ["string", "null"], "description": "Texte exact à afficher si requis."}
+          }
+        },
+        "importe_le": {"$ref": "#/$defs/date"},
+        "derives": {"type": "array", "items": {"$ref": "#/$defs/derive"}},
+        "usages": {"type": "array", "items": {"$ref": "#/$defs/usage"}}
+      }
+    },
+    "derive": {
+      "type": "object",
+      "required": ["id", "nature", "fichier", "statut", "recette", "cree_le"],
+      "properties": {
+        "id": {"$ref": "#/$defs/slug", "description": "<id-photo>-<nature>-<sujet>-<format>-<style>, parties absentes omises. Ex. 2026-11-08-rope-jam-bulle-001-crop-mains-insta-4x5-nb"},
+        "nature": {"enum": ["crop", "zoom", "format", "style"]},
+        "sujet": {"$ref": "#/$defs/slug", "description": "Ce que montre le crop/zoom : mains, noeud, visage…"},
+        "format": {"type": ["string", "null"], "description": "Clé de formats.json."},
+        "style": {"type": ["string", "null"], "description": "Clé de styles.json (style validé uniquement)."},
+        "fichier": {"$ref": "#/$defs/kdrive_fichier"},
+        "recette": {
+          "type": "object",
+          "description": "Tout ce qu'il faut pour regénérer le dérivé à l'identique depuis l'original.",
+          "properties": {
+            "cadre": {
+              "type": "object",
+              "description": "Rectangle de recadrage en px de l'original.",
+              "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}, "l": {"type": "integer"}, "h": {"type": "integer"}}
+            },
+            "sortie": {"type": "object", "properties": {"largeur": {"type": "integer"}, "hauteur": {"type": ["integer", "null"]}}},
+            "etalonnage": {"type": "object", "description": "Paramètres exacts (luminosité, contraste, saturation…) si ajustement ponctuel hors style."}
+          }
+        },
+        "statut": {"enum": ["proposition", "valide"]},
+        "cree_le": {"$ref": "#/$defs/date"},
+        "valide_le": {"$ref": "#/$defs/date"}
+      }
+    },
+    "usage": {
+      "type": "object",
+      "required": ["id", "date", "canal", "skill", "statut"],
+      "properties": {
+        "id": {"type": "string", "description": "u-<date>-<NNN>"},
+        "date": {"$ref": "#/$defs/date", "description": "Date de publication prévue/effective."},
+        "canal": {"type": "string", "description": "instagram, instagram-story, site, telegram, facebook, email…"},
+        "skill": {"type": "string", "description": "Skill qui a produit le visuel, ex. nawashi-evenements."},
+        "reference": {"type": ["string", "null"], "description": "Référence du post : slug, URL, id Metricool…"},
+        "derive": {"type": ["string", "null"], "description": "id du dérivé utilisé, null si l'original."},
+        "statut": {"enum": ["prevu", "annule"], "description": "Créé en « prevu » dès que le visuel final est livré (compte dès ce moment) ; « annule » ne compte plus."},
+        "note": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
