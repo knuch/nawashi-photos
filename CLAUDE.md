@@ -48,8 +48,10 @@ gérée par Flavien alias Tengu). Utilisée par des agents Claude ; source du fu
   statut par défaut `ecrit-confirme`, publiable partout.
 - Statut `retire` : photo exclue de toute sélection (dérivés compris).
 - **Aucune mention ni tag de personne par défaut**, seulement sur demande explicite de Flavien.
-- Type `illustration` : réservé aux illustrations libres de droit fournies par Flavien,
-  avec `source` et `licence` (attribution si la licence l'exige).
+- Type `illustration` : réservé aux illustrations libres de droit fournies par Flavien.
+  Toutes sont libres de droit : licence par défaut « libre de droit », sans attribution.
+  **Ne jamais demander de licence ni de source à Flavien** (`source` reste facultative).
+  Pas de crédit @nawashi.ch sur une illustration.
 
 ## Tags
 Vocabulaire fermé dans `vocabulaire.json` ; une valeur n'est ajoutée que si aucune existante
@@ -81,6 +83,9 @@ Cucheturelle (Forum des cordes).
 Lister `a-importer/` → attribuer un identifiant et renommer → previews 512 et 1000 px →
 rédiger la description → proposer les tags → **après accord**, déplacer vers `originaux/`
 et mettre à jour l'index, puis commiter.
+JPEG et PNG acceptés : un PNG est exporté en JPEG (qualité 95, transparence aplatie sur blanc)
+à l'import ; le JPEG devient l'original (`converti_depuis: "png"`) et le PNG déposé va à la corbeille.
+Corriger une fiche après import : `importer.py modifier <id> --tags '{…}' --description … --commit`.
 
 ## Commandes
 ```sh

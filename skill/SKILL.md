@@ -19,8 +19,8 @@ Photothèque : images sur kDrive (`/Private/nawashi/nawashi-photos`), métadonn�
    demande explicite de Flavien. Ensuite, priorité aux moins utilisées (tri par défaut).
 3. **Aucune image générée par IA** : recadrer, redimensionner, étalonner uniquement.
    Pas de remplissage, pas d'extension. Si le cadre ne tient pas : autre cadre ou autre photo.
-4. **Crédit** : « Photo : @nawashi.ch » sur tout visuel publié. Illustration : créditer selon
-   sa `licence` (texte `attribution` exact si `attribution_requise`).
+4. **Crédit** : « Photo : @nawashi.ch » sur toute photo publiée. Les illustrations sont libres de
+   droit : pas de crédit @nawashi.ch, et ne jamais demander de licence à Flavien.
 5. **Personnes** : toutes ont donné un consentement écrit (statut `ecrit-confirme`, publiable
    partout), mais **ne mentionner ni taguer personne** sauf demande explicite de Flavien.
 6. **Lieux** : écrire « salle de pole à Bulle », jamais le nom de l'entité qui accueille.
@@ -67,4 +67,6 @@ Seuls les dérivés `valide` peuvent être utilisés.
    Si aucune valeur ne convient, proposer un ajout au vocabulaire à Flavien, sans l'ajouter seul.
 3. Présenter à Flavien : numéro, description, tags. Corriger selon ses retours.
 4. Après accord : `python scripts/importer.py valider --commit` puis `git push`.
+   JPEG et PNG acceptés (PNG exporté en JPEG à l'import).
+5. Correction ultérieure : `importer.py modifier <id> --tags '{"lieu":"bulle"}' --commit`.
    Identifiant attribué : `<date d'import>-<contexte>-<NNN>`.

@@ -108,8 +108,6 @@ def valider_index(index: dict) -> None:
             raise ValueError(f"{p['id']} : type invalide")
         if p["autorisation"]["statut"] not in ("ecrit-confirme", "retire"):
             raise ValueError(f"{p['id']} : statut d'autorisation invalide")
-        if p["type"] == "illustration" and not (p.get("source") and p.get("licence")):
-            raise ValueError(f"{p['id']} : une illustration doit avoir source et licence")
         valider_tags(p["tags"])
         for d in p.get("derives", []):
             if d["statut"] not in ("proposition", "valide"):

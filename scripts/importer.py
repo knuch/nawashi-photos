@@ -13,6 +13,7 @@ Flux (« j'ai ajouté des photos ») :
        attribue l'identifiant <date-import>-<contexte>-<NNN>, renomme et déplace
        l'original vers originaux/, envoie les previews dans previews/512 et previews/1000,
        ajoute l'entrée à index.json (relu juste avant) et commite.
+  Correction après import :  python scripts/importer.py modifier <id> --tags '{"lieu":"bulle"}' [--description …] [--commit]
   Abandon d'une photo :  python scripts/importer.py ignorer <n>  (elle reste dans a-importer/)
 
 Le nom de fichier ne porte aucune métadonnée ; tout est dans index.json.
@@ -35,7 +36,8 @@ from photolib import (REPO, CACHE, CONFIG, aujourdhui, ecrire_index, lire_index,
 
 DOSSIER = CACHE / "import"
 FICHE = DOSSIER / "fiche.json"
-EXTENSIONS = (".jpg", ".jpeg")
+EXTENSIONS = (".jpg", ".jpeg", ".png")
+LICENCE_ILLUSTRATION = {"nom": "libre de droit", "attribution_requise": False, "attribution": None}
 QUALITE = CONFIG["regles"]["jpeg_qualite"]["preview"]
 
 
@@ -61,6 +63,26 @@ def _previews(src: Path, base: str) -> dict[int, Path]:
     return sorties
 
 
+def _en_jpeg(png: Path) -> Path:
+    """Exporte un PNG en JPEG (qualité 95, sans sous-échantillonnage chroma, transparence
+    aplatie sur blanc, profil couleur conservé). Le JPEG devient l'original."""
+    im = ouvrir(png)
+    icc = im.info.get("icc_profile")
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        fond = Image.new("RGB", im.size, (255, 255, 255))
+        fond.paste(im, mask=im.getchannel("A"))
+        im = fond
+    else:
+        im = im.convert("RGB")
+    dest = png.with_suffix(".jpg")
+    opts = {"quality": 95, "subsampling": 0, "optimize": True}
+    if icc:
+        opts["icc_profile"] = icc
+    im.save(dest, **opts)
+    return dest
+
+
 def preparer(_args) -> None:
     deja = {p.get("sha256"): p["id"] for p in lire_index()["photos"]}
     ancienne = json.loads(FICHE.read_text()) if FICHE.exists() else {"photos": []}
@@ -69,20 +91,23 @@ def preparer(_args) -> None:
     fiche = {"date_import": aujourdhui(), "photos": []}
     for f in sorted(fichiers, key=lambda x: x["name"]):
         if not f["name"].lower().endswith(EXTENSIONS):
-            print(f"  ignoré (pas un JPEG) : {f['name']}")
+            print(f"  ignoré (ni JPEG ni PNG) : {f['name']}")
             continue
         if f["id"] in connues:                      # garder ce que l'agent a déjà rédigé
             fiche["photos"].append(connues[f["id"]])
             continue
-        local = DOSSIER / "originaux" / f"{f['id']}.jpg"
-        if not local.exists():
-            kdrive.download(f["id"], local)
-        sha = hashlib.sha256(local.read_bytes()).hexdigest()
+        ext = Path(f["name"]).suffix.lower()
+        source = DOSSIER / "sources" / f"{f['id']}{ext}"
+        if not source.exists():
+            kdrive.download(f["id"], source)
+        sha = hashlib.sha256(source.read_bytes()).hexdigest()   # empreinte du fichier déposé
+        local = _en_jpeg(source) if ext == ".png" else source
         im = ouvrir(local)
         l, h = im.size
         prev = _previews(local, str(f["id"]))
         fiche["photos"].append({
-            "kdrive_id": f["id"], "nom_import": f["name"], "octets": f.get("size"),
+            "kdrive_id": f["id"], "nom_import": f["name"], "octets": local.stat().st_size,
+            "converti_depuis": "png" if ext == ".png" else None, "original_local": str(local),
             "sha256": sha, "doublon_de": deja.get(sha),
             "date_prise": _date_exif(im), "largeur": l, "hauteur": h,
             "orientation": orientation(l, h), "ratio": round(l / h, 3),
@@ -136,8 +161,6 @@ def _controler(p: dict) -> None:
     verifier_slug(p["contexte"] or "", "contexte")
     valider_tags({"contexte": p["contexte"]})
     valider_tags(p["tags"])
-    if p["type"] == "illustration" and not (p.get("source") and p.get("licence")):
-        raise ValueError(f"{p['nom_import']} : une illustration exige source et licence")
 
 
 def valider(args) -> None:
@@ -155,10 +178,20 @@ def valider(args) -> None:
         p = fiche["photos"][0]
         ident = _prochain_numero(lire_index(), f"{date_import}-{p['contexte']}", set())
         nom = f"{ident}.jpg"
-        # original : renommer puis déplacer (jamais réencodé)
-        kdrive.rename(p["kdrive_id"], nom)
-        kdrive.move(p["kdrive_id"], dossier_orig)
-        fichiers = {"original": {"chemin": f"originaux/{nom}", "id": p["kdrive_id"],
+        if p.get("converti_depuis"):
+            # PNG : on envoie le JPEG converti dans originaux/, puis le PNG déposé va à la corbeille
+            res = kdrive.upload(Path(p["original_local"]), dossier_orig, nom, conflict="error")
+            id_original = res.get("file", res)["id"]
+            kdrive.trash(p["kdrive_id"])
+        else:
+            # JPEG : renommer puis déplacer (jamais réencodé)
+            kdrive.rename(p["kdrive_id"], nom)
+            kdrive.move(p["kdrive_id"], dossier_orig)
+            id_original = p["kdrive_id"]
+        cible = CACHE / "originaux" / nom                      # garder l'original en cache local
+        cible.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(p["original_local"], cible)
+        fichiers = {"original": {"chemin": f"originaux/{nom}", "id": id_original,
                                  "largeur": p["largeur"], "hauteur": p["hauteur"], "octets": p["octets"]}}
         for taille, local in p["previews_locales"].items():
             res = kdrive.upload(Path(local), kdrive.resolve(f"previews/{taille}"), nom, conflict="error")
@@ -178,7 +211,9 @@ def valider(args) -> None:
             "description": p["description"].strip(), "zones": p.get("zones", []),
             "tags": valider_tags({**p["tags"], "contexte": p["contexte"]}),
             "credit": None, "autorisation": {"statut": "ecrit-confirme", "depuis": date_import},
-            "personnes_mentionnees": [], "source": p.get("source"), "licence": p.get("licence"),
+            "personnes_mentionnees": [], "source": p.get("source"),
+            "licence": (p.get("licence") or LICENCE_ILLUSTRATION) if p["type"] == "illustration" else None,
+            "converti_depuis": p.get("converti_depuis"),
             "importe_le": date_import, "derives": [], "usages": [],
         }
         # index écrit après chaque photo : un plantage au milieu laisse un état cohérent
@@ -195,6 +230,28 @@ def valider(args) -> None:
     print(f"index.json mis à jour ({len(faites)} photo(s))" + (" et commité." if args.commit else "."))
 
 
+def modifier(args) -> None:
+    """Corrige description, tags, zones ou type d'une photo déjà importée (l'id ne change pas)."""
+    def modif(index):
+        from photolib import photo
+        p = photo(index, args.id)
+        if args.description:
+            p["description"] = args.description.strip()
+        if args.tags:
+            nouveaux = json.loads(args.tags)
+            if "contexte" in nouveaux:
+                raise ValueError("le contexte fait partie de l'identifiant : ne se change pas ici")
+            p["tags"] = valider_tags({**p["tags"], **nouveaux})
+        if args.zones:
+            p["zones"] = json.loads(args.zones)
+        if args.type:
+            p["type"] = args.type
+            p["licence"] = (p.get("licence") or LICENCE_ILLUSTRATION) if args.type == "illustration" else None
+        return p
+    p = ecrire_index(modif, f"Fiche corrigée : {args.id}", commit=args.commit)
+    print(json.dumps({k: p[k] for k in ("id", "type", "description", "tags", "zones")}, ensure_ascii=False, indent=1))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -202,6 +259,10 @@ def main() -> None:
     sub.add_parser("fiche").set_defaults(f=afficher)
     s = sub.add_parser("ignorer"); s.add_argument("numero", type=int); s.set_defaults(f=ignorer)
     s = sub.add_parser("valider"); s.add_argument("--commit", action="store_true"); s.set_defaults(f=valider)
+    s = sub.add_parser("modifier"); s.add_argument("id"); s.add_argument("--description")
+    s.add_argument("--tags", help='JSON partiel, ex. \'{"lieu": "bulle", "ambiance": ["calme"]}\'')
+    s.add_argument("--zones"); s.add_argument("--type", choices=["photo", "illustration"])
+    s.add_argument("--commit", action="store_true"); s.set_defaults(f=modifier)
     args = ap.parse_args()
     try:
         args.f(args)
