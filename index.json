@@ -1,5 +1,911 @@
 {
   "$schema": "./index.schema.json",
   "schema_version": 1,
-  "photos": []
+  "photos": [
+    {
+      "id": "2026-11-12-seance-photo-001",
+      "type": "photo",
+      "date_prise": "2023-11-12",
+      "nom_import": "DSCF9068.jpg",
+      "sha256": "ec54a93c499da6a4ee9e928eb7e12ec1d21494811e4aae23cfb82a85300e37b0",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-001.jpg",
+          "id": 30,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 246685
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-001.jpg",
+          "id": 42,
+          "largeur": 342,
+          "hauteur": 512,
+          "octets": 27674
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-001.jpg",
+          "id": 43,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 96134
+        }
+      },
+      "largeur": 667,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.667,
+      "description": "Solo allongée sur le dos sur un tatami, vue plongeante ; harnais de poitrine et de hanches sur body noir, bras ouverts, yeux fermés, visage détendu en bas à gauche. Lumière chaude et tamisée. Crops : harnais au centre, visage en bas à gauche.",
+      "zones": [
+        {
+          "nom": "harnais",
+          "x": 0.3,
+          "y": 0.3,
+          "l": 0.45,
+          "h": 0.35
+        },
+        {
+          "nom": "visage",
+          "x": 0.15,
+          "y": 0.68,
+          "l": 0.35,
+          "h": 0.25
+        }
+      ],
+      "tags": {
+        "plan": [
+          "ensemble"
+        ],
+        "technique": [
+          "chest-harness",
+          "hip-harness",
+          "sol"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "calme",
+          "intime"
+        ],
+        "lumiere": [
+          "basse-lumiere"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-002",
+      "type": "photo",
+      "date_prise": "2023-11-12",
+      "nom_import": "DSCF9133.jpg",
+      "sha256": "25915a6ba145cc24b9dfadc7fbfe98740cfb5f682574d6778e083792c6550143",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-002.jpg",
+          "id": 35,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 165182
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-002.jpg",
+          "id": 44,
+          "largeur": 342,
+          "hauteur": 512,
+          "octets": 18999
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-002.jpg",
+          "id": 45,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 58906
+        }
+      },
+      "largeur": 667,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.667,
+      "description": "Plan moyen de profil, harnais de poitrine sur t-shirt clair, tresse rousse, visage dans l'ombre ; suspension lumineuse en contre-jour en haut à droite. Ambiance sombre et intime. Crop : cordes sur la poitrine au centre.",
+      "zones": [
+        {
+          "nom": "cordes",
+          "x": 0.05,
+          "y": 0.45,
+          "l": 0.6,
+          "h": 0.25
+        }
+      ],
+      "tags": {
+        "plan": [
+          "plan-moyen"
+        ],
+        "technique": [
+          "chest-harness"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "intime",
+          "dramatique"
+        ],
+        "lumiere": [
+          "basse-lumiere",
+          "contre-jour"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-003",
+      "type": "photo",
+      "date_prise": "2023-11-12",
+      "nom_import": "DSCF9146.jpg",
+      "sha256": "8bcb33e84d952093d2992c75f8b097440f2b2190a82fac522b574c37eac7566c",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-003.jpg",
+          "id": 37,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 218749
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-003.jpg",
+          "id": 46,
+          "largeur": 342,
+          "hauteur": 512,
+          "octets": 25441
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-003.jpg",
+          "id": 47,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 81029
+        }
+      },
+      "largeur": 667,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.667,
+      "description": "De dos en contre-plongée, takate-kote sur robe grise, mains liées dans le dos ; bambou et suspension lumineuse au plafond en haut. Espace vide au plafond pour du texte. Crops : mains et nœud du dos en bas au centre.",
+      "zones": [
+        {
+          "nom": "mains",
+          "x": 0.3,
+          "y": 0.62,
+          "l": 0.4,
+          "h": 0.2
+        },
+        {
+          "nom": "dos",
+          "x": 0.2,
+          "y": 0.45,
+          "l": 0.6,
+          "h": 0.3
+        }
+      ],
+      "tags": {
+        "plan": [
+          "plan-moyen"
+        ],
+        "technique": [
+          "takate-kote"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "calme",
+          "intime"
+        ],
+        "lumiere": [
+          "basse-lumiere"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-004",
+      "type": "photo",
+      "date_prise": "2023-11-12",
+      "nom_import": "DSCF9190.jpg",
+      "sha256": "aeef22dc1c542f32da4cdb9d7ad08d493e665f25e77a30cf625993588a97c9dd",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-004.jpg",
+          "id": 34,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 223039
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-004.jpg",
+          "id": 48,
+          "largeur": 342,
+          "hauteur": 512,
+          "octets": 24356
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-004.jpg",
+          "id": 49,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 86223
+        }
+      },
+      "largeur": 667,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.667,
+      "description": "Plan moyen désaturé, bras liés dans le dos, harnais de poitrine et de hanches avec nœud bien visible au bassin ; visage hors cadre en haut. Intérieur avec étagères à droite. Crop : nœud des hanches au centre.",
+      "zones": [
+        {
+          "nom": "noeud",
+          "x": 0.4,
+          "y": 0.45,
+          "l": 0.35,
+          "h": 0.25
+        }
+      ],
+      "tags": {
+        "plan": [
+          "plan-moyen",
+          "noeud"
+        ],
+        "technique": [
+          "takate-kote",
+          "hip-harness"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "intime"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "non",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-005",
+      "type": "photo",
+      "date_prise": "2023-11-12",
+      "nom_import": "DSCF9198.jpg",
+      "sha256": "67036ba1e510347d63e8a38957363b2346e1085dc719a2b28f3d199823e264ba",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-005.jpg",
+          "id": 36,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 235848
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-005.jpg",
+          "id": 50,
+          "largeur": 342,
+          "hauteur": 512,
+          "octets": 30229
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-005.jpg",
+          "id": 51,
+          "largeur": 667,
+          "hauteur": 1000,
+          "octets": 89743
+        }
+      },
+      "largeur": 667,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.667,
+      "description": "Semi-suspension sous un bambou : buste à l'horizontale soutenu par les cordes, un pied au sol, plante verte à droite ; suspension lumineuse en haut. Scène d'ensemble chargée. Crop : buste et bambou dans la moitié haute.",
+      "zones": [
+        {
+          "nom": "buste",
+          "x": 0.2,
+          "y": 0.15,
+          "l": 0.6,
+          "h": 0.4
+        }
+      ],
+      "tags": {
+        "plan": [
+          "ensemble"
+        ],
+        "technique": [
+          "semi-suspension"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "intense"
+        ],
+        "lumiere": [
+          "basse-lumiere"
+        ],
+        "espace-texte": "non",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-006",
+      "type": "photo",
+      "date_prise": null,
+      "nom_import": "j1.png",
+      "sha256": "88e3a72eaba0b9a483f29047b76ee645b0578a8c25e2645536d0847d8b6dd827",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-006.jpg",
+          "id": 52,
+          "largeur": 1072,
+          "hauteur": 1172,
+          "octets": 269444
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-006.jpg",
+          "id": 53,
+          "largeur": 468,
+          "hauteur": 512,
+          "octets": 36748
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-006.jpg",
+          "id": 54,
+          "largeur": 915,
+          "hauteur": 1000,
+          "octets": 101024
+        }
+      },
+      "largeur": 1072,
+      "hauteur": 1172,
+      "orientation": "portrait",
+      "ratio": 0.915,
+      "description": "Noir et blanc : suspension horizontale face au sol depuis un anneau, chevilles et poignets reliés aux cordes ; le rigger, accroupi à gauche, se rapproche du visage. Barres de pole verticales et fresque de vagues au mur en haut. Crops : duo des visages au centre-gauche, anneau en haut.",
+      "zones": [
+        {
+          "nom": "visages",
+          "x": 0.15,
+          "y": 0.45,
+          "l": 0.4,
+          "h": 0.3
+        },
+        {
+          "nom": "anneau",
+          "x": 0.55,
+          "y": 0.05,
+          "l": 0.2,
+          "h": 0.2
+        }
+      ],
+      "tags": {
+        "plan": [
+          "ensemble"
+        ],
+        "technique": [
+          "suspension"
+        ],
+        "personnes": "duo",
+        "ambiance": [
+          "intime",
+          "intense"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "non",
+        "lieu": "bulle",
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": "png",
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-materiel-001",
+      "type": "illustration",
+      "date_prise": null,
+      "nom_import": "ropes.jpg",
+      "sha256": "6047ee9ac34c3b922faaec16a381569205c68cfbc18f19865e8270d99fc3cc56",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-materiel-001.jpg",
+          "id": 33,
+          "largeur": 1920,
+          "hauteur": 1280,
+          "octets": 813473
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-materiel-001.jpg",
+          "id": 55,
+          "largeur": 512,
+          "hauteur": 341,
+          "octets": 61187
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-materiel-001.jpg",
+          "id": 56,
+          "largeur": 1000,
+          "hauteur": 667,
+          "octets": 209242
+        }
+      },
+      "largeur": 1920,
+      "hauteur": 1280,
+      "orientation": "paysage",
+      "ratio": 1.5,
+      "description": "Texture plein cadre de cordes de jute naturelles emmêlées, tons sable chauds, sans personne. Fond idéal sous un texte avec un bandeau. Crop possible n'importe où.",
+      "zones": [],
+      "tags": {
+        "plan": [
+          "corde-seule",
+          "detail"
+        ],
+        "technique": [],
+        "personnes": "aucune",
+        "ambiance": [
+          "calme"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "materiel"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": {
+        "nom": "libre de droit",
+        "attribution_requise": false,
+        "attribution": null
+      },
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-materiel-002",
+      "type": "illustration",
+      "date_prise": null,
+      "nom_import": "ropes2.jpg",
+      "sha256": "3af9fb992445ddfc00b8360ab5bc9106cbd124bf28cf068420161a345ed73661",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-materiel-002.jpg",
+          "id": 41,
+          "largeur": 1251,
+          "hauteur": 1021,
+          "octets": 293712
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-materiel-002.jpg",
+          "id": 57,
+          "largeur": 512,
+          "hauteur": 418,
+          "octets": 65001
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-materiel-002.jpg",
+          "id": 58,
+          "largeur": 1000,
+          "hauteur": 816,
+          "octets": 224712
+        }
+      },
+      "largeur": 1251,
+      "hauteur": 1021,
+      "orientation": "paysage",
+      "ratio": 1.225,
+      "description": "Une douzaine d'écheveaux de cordes de jute rangés sur fond blanc, vue de dessus, éclairage studio. Rendu catalogue, sans personne.",
+      "zones": [],
+      "tags": {
+        "plan": [
+          "corde-seule",
+          "ensemble"
+        ],
+        "technique": [],
+        "personnes": "aucune",
+        "ambiance": [
+          "calme"
+        ],
+        "lumiere": [
+          "studio"
+        ],
+        "espace-texte": "non",
+        "lieu": null,
+        "contexte": "materiel"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": {
+        "nom": "libre de droit",
+        "attribution_requise": false,
+        "attribution": null
+      },
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-materiel-003",
+      "type": "illustration",
+      "date_prise": null,
+      "nom_import": "ropesSquare.png",
+      "sha256": "497d7b9dfbb1c9966962f1707f5b8199766bffcc1cb5755b1cff34d79f189888",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-materiel-003.jpg",
+          "id": 59,
+          "largeur": 1098,
+          "hauteur": 1096,
+          "octets": 781937
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-materiel-003.jpg",
+          "id": 60,
+          "largeur": 512,
+          "hauteur": 511,
+          "octets": 87255
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-materiel-003.jpg",
+          "id": 61,
+          "largeur": 1000,
+          "hauteur": 998,
+          "octets": 274901
+        }
+      },
+      "largeur": 1098,
+      "hauteur": 1096,
+      "orientation": "carre",
+      "ratio": 1.002,
+      "description": "Gros plan carré de cordes de chanvre épaisses emmêlées, tons cuivrés chauds, sans personne. Texture plein cadre, fond possible sous un texte avec bandeau.",
+      "zones": [],
+      "tags": {
+        "plan": [
+          "corde-seule",
+          "detail"
+        ],
+        "technique": [],
+        "personnes": "aucune",
+        "ambiance": [
+          "calme"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "materiel"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": {
+        "nom": "libre de droit",
+        "attribution_requise": false,
+        "attribution": null
+      },
+      "converti_depuis": "png",
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-materiel-004",
+      "type": "photo",
+      "date_prise": "2023-12-29",
+      "nom_import": "tatami.jpg",
+      "sha256": "6e85d9a864f26b42ae965e3d7dcea34a3dd77c659934acb503108262d0528fa2",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-materiel-004.jpg",
+          "id": 40,
+          "largeur": 766,
+          "hauteur": 1000,
+          "octets": 411095
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-materiel-004.jpg",
+          "id": 62,
+          "largeur": 392,
+          "hauteur": 512,
+          "octets": 54376
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-materiel-004.jpg",
+          "id": 63,
+          "largeur": 766,
+          "hauteur": 1000,
+          "octets": 209106
+        }
+      },
+      "largeur": 766,
+      "hauteur": 1000,
+      "orientation": "portrait",
+      "ratio": 0.766,
+      "description": "Matériel posé sur un tatami vu en biais : cordes en écheveaux, sac noir, ciseaux de sécurité dans une pochette rose, galets noués. Surface de tatami libre en bas à gauche pour du texte. Crop : ciseaux de sécurité en haut au centre.",
+      "zones": [
+        {
+          "nom": "ciseaux",
+          "x": 0.35,
+          "y": 0.35,
+          "l": 0.3,
+          "h": 0.25
+        }
+      ],
+      "tags": {
+        "plan": [
+          "corde-seule",
+          "detail"
+        ],
+        "technique": [],
+        "personnes": "aucune",
+        "ambiance": [
+          "calme"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "materiel"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-cours-001",
+      "type": "photo",
+      "date_prise": "2023-12-29",
+      "nom_import": "teach.jpg",
+      "sha256": "ec26a5f07e3c72581e9b0b0ddc7b458e87b0ba196cf848424344498c78723f67",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-cours-001.jpg",
+          "id": 39,
+          "largeur": 1536,
+          "hauteur": 2048,
+          "octets": 642270
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-cours-001.jpg",
+          "id": 64,
+          "largeur": 384,
+          "hauteur": 512,
+          "octets": 36639
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-cours-001.jpg",
+          "id": 65,
+          "largeur": 750,
+          "hauteur": 1000,
+          "octets": 123748
+        }
+      },
+      "largeur": 1536,
+      "hauteur": 2048,
+      "orientation": "portrait",
+      "ratio": 0.75,
+      "description": "Cours au sol sur tatami : un enseignant penché guide deux élèves assis (visages floutés), cordes au sol au premier plan. Intérieur clair, mur blanc en haut pour du texte. Crop : mains et cordes en bas.",
+      "zones": [
+        {
+          "nom": "mains",
+          "x": 0.3,
+          "y": 0.55,
+          "l": 0.55,
+          "h": 0.4
+        }
+      ],
+      "tags": {
+        "plan": [
+          "ensemble"
+        ],
+        "technique": [
+          "sol"
+        ],
+        "personnes": "groupe",
+        "ambiance": [
+          "joyeux",
+          "calme"
+        ],
+        "lumiere": [
+          "naturelle"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "cours"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    },
+    {
+      "id": "2026-11-12-seance-photo-007",
+      "type": "photo",
+      "date_prise": "2022-09-03",
+      "nom_import": "toile.jpg",
+      "sha256": "e3dc3e080c0cdb0d9df00d4c544c15bfca40064a8868f25a3db4e6ca725f13c3",
+      "fichiers": {
+        "original": {
+          "chemin": "originaux/2026-11-12-seance-photo-007.jpg",
+          "id": 38,
+          "largeur": 840,
+          "hauteur": 560,
+          "octets": 97822
+        },
+        "preview_512": {
+          "chemin": "previews/512/2026-11-12-seance-photo-007.jpg",
+          "id": 66,
+          "largeur": 512,
+          "hauteur": 341,
+          "octets": 17448
+        },
+        "preview_1000": {
+          "chemin": "previews/1000/2026-11-12-seance-photo-007.jpg",
+          "id": 67,
+          "largeur": 840,
+          "hauteur": 560,
+          "octets": 39892
+        }
+      },
+      "largeur": 840,
+      "hauteur": 560,
+      "orientation": "paysage",
+      "ratio": 1.5,
+      "description": "Noir et blanc très contrasté : buste en clair-obscur, mains croisées sur la poitrine, harnais de poitrine serré, visage hors cadre ; grande zone noire à gauche pour du texte. Crop : mains et cordes au centre-droit.",
+      "zones": [
+        {
+          "nom": "mains",
+          "x": 0.4,
+          "y": 0.3,
+          "l": 0.4,
+          "h": 0.5
+        }
+      ],
+      "tags": {
+        "plan": [
+          "plan-moyen",
+          "mains"
+        ],
+        "technique": [
+          "chest-harness"
+        ],
+        "personnes": "solo",
+        "ambiance": [
+          "dramatique",
+          "intime"
+        ],
+        "lumiere": [
+          "basse-lumiere"
+        ],
+        "espace-texte": "oui",
+        "lieu": null,
+        "contexte": "seance-photo"
+      },
+      "credit": null,
+      "autorisation": {
+        "statut": "ecrit-confirme",
+        "depuis": "2026-11-12"
+      },
+      "personnes_mentionnees": [],
+      "source": null,
+      "licence": null,
+      "converti_depuis": null,
+      "importe_le": "2026-11-12",
+      "derives": [],
+      "usages": []
+    }
+  ]
 }
