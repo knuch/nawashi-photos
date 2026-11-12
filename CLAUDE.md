@@ -100,5 +100,6 @@ python scripts/deriver.py creer <id> --nature crop --sujet mains --zone mains --
 python scripts/deriver.py galerie --html             # propositions numérotées
 python scripts/deriver.py trier --retirer 2,5 --commit
 python scripts/usages.py ajouter <id-photo-ou-derive> --canal instagram --skill … --reference … --date … --commit
+python scripts/rendre_canvas.py --sortie cache/rendus/post --asset <blob>=<fichier> f1.dc.html …   # canvas → PNG 1080 px (export Canva)
 ```
 `cache/` (gitignoré) garde les images téléchargées et générées. Après un commit, `git push`.
