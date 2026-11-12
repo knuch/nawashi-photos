@@ -395,28 +395,28 @@
       "usages": []
     },
     {
-      "id": "2026-11-12-seance-photo-006",
+      "id": "2026-11-12-performance-001",
       "type": "photo",
       "date_prise": null,
       "nom_import": "j1.png",
       "sha256": "88e3a72eaba0b9a483f29047b76ee645b0578a8c25e2645536d0847d8b6dd827",
       "fichiers": {
         "original": {
-          "chemin": "originaux/2026-11-12-seance-photo-006.jpg",
+          "chemin": "originaux/2026-11-12-performance-001.jpg",
           "id": 52,
           "largeur": 1072,
           "hauteur": 1172,
           "octets": 269444
         },
         "preview_512": {
-          "chemin": "previews/512/2026-11-12-seance-photo-006.jpg",
+          "chemin": "previews/512/2026-11-12-performance-001.jpg",
           "id": 53,
           "largeur": 468,
           "hauteur": 512,
           "octets": 36748
         },
         "preview_1000": {
-          "chemin": "previews/1000/2026-11-12-seance-photo-006.jpg",
+          "chemin": "previews/1000/2026-11-12-performance-001.jpg",
           "id": 54,
           "largeur": 915,
           "hauteur": 1000,
@@ -427,7 +427,7 @@
       "hauteur": 1172,
       "orientation": "portrait",
       "ratio": 0.915,
-      "description": "Noir et blanc : suspension horizontale face au sol depuis un anneau, chevilles et poignets reliés aux cordes ; le rigger, accroupi à gauche, se rapproche du visage. Barres de pole verticales et fresque de vagues au mur en haut. Crops : duo des visages au centre-gauche, anneau en haut.",
+      "description": "Noir et blanc, démonstration au festival Japan Impact : suspension horizontale face au sol depuis un anneau, chevilles et poignets reliés aux cordes ; le rigger, accroupi à gauche, se rapproche du visage. Structure métallique verticale et fresque de vagues au mur en haut. Crops : duo des visages au centre-gauche, anneau en haut.",
       "zones": [
         {
           "nom": "visages",
@@ -460,8 +460,8 @@
           "naturelle"
         ],
         "espace-texte": "non",
-        "lieu": "bulle",
-        "contexte": "seance-photo"
+        "lieu": "epfl",
+        "contexte": "performance"
       },
       "credit": null,
       "autorisation": {

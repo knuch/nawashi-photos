@@ -82,11 +82,13 @@
     "unique": true,
     "valeurs": [
       "bulle",
-      "lafabrik-cucheturelle"
+      "lafabrik-cucheturelle",
+      "epfl"
     ],
     "libelles": {
       "bulle": "salle de pole à Bulle — rester générique, ne jamais nommer l'entité qui accueille",
-      "lafabrik-cucheturelle": "LaFabrik, Cucheturelle (Forum des cordes)"
+      "lafabrik-cucheturelle": "LaFabrik, Cucheturelle (Forum des cordes)",
+      "epfl": "EPFL, Lausanne (festival Japan Impact)"
     }
   }
 }

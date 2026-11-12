@@ -61,7 +61,7 @@ zones intéressantes pour un crop), plus des `zones` facultatives (fractions 0�
 
 Lieux (`vocabulaire.json` → `lieu.libelles`) : `bulle` = **« salle de pole à Bulle »**, toujours
 générique, ne jamais nommer l'entité qui accueille ; `lafabrik-cucheturelle` = LaFabrik,
-Cucheturelle (Forum des cordes).
+Cucheturelle (Forum des cordes) ; `epfl` = EPFL, Lausanne (festival Japan Impact).
 
 ## Déclinaisons
 - `formats.json` : insta-4x5 1080×1350, story-9x16 1080×1920, entete-16x9 1920×1080,
@@ -86,6 +86,8 @@ et mettre à jour l'index, puis commiter.
 JPEG et PNG acceptés : un PNG est exporté en JPEG (qualité 95, transparence aplatie sur blanc)
 à l'import ; le JPEG devient l'original (`converti_depuis: "png"`) et le PNG déposé va à la corbeille.
 Corriger une fiche après import : `importer.py modifier <id> --tags '{…}' --description … --commit`.
+Changer le contexte (donc l'identifiant) : `importer.py renommer <id> --contexte … --commit`
+(renomme original, previews et dérivés sur kDrive et met l'index à jour d'un coup).
 
 ## Commandes
 ```sh

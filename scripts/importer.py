@@ -14,6 +14,7 @@ Flux (« j'ai ajouté des photos ») :
        l'original vers originaux/, envoie les previews dans previews/512 et previews/1000,
        ajoute l'entrée à index.json (relu juste avant) et commite.
   Correction après import :  python scripts/importer.py modifier <id> --tags '{"lieu":"bulle"}' [--description …] [--commit]
+  Changement de contexte (donc d'identifiant) :  python scripts/importer.py renommer <id> --contexte performance [--commit]
   Abandon d'une photo :  python scripts/importer.py ignorer <n>  (elle reste dans a-importer/)
 
 Le nom de fichier ne porte aucune métadonnée ; tout est dans index.json.
@@ -252,6 +253,45 @@ def modifier(args) -> None:
     print(json.dumps({k: p[k] for k in ("id", "type", "description", "tags", "zones")}, ensure_ascii=False, indent=1))
 
 
+def renommer(args) -> None:
+    """Change le contexte d'une photo, donc son identifiant : renomme sur kDrive l'original,
+    les previews et les dérivés, puis met à jour index.json (chemins, ids, usages) d'un coup."""
+    verifier_slug(args.contexte, "contexte")
+    valider_tags({"contexte": args.contexte})
+    index = lire_index()
+    from photolib import photo
+    p = photo(index, args.id)
+    ancien = p["id"]
+    nouveau = _prochain_numero(index, f"{ancien[:10]}-{args.contexte}", set())
+
+    def nouveau_nom(chemin: str) -> str:
+        dossier, nom = chemin.rsplit("/", 1)
+        return f"{dossier}/{nouveau}{nom[len(ancien):]}"
+
+    fichiers = list(p["fichiers"].values()) + [d["fichier"] for d in p["derives"]]
+    for f in fichiers:                                  # kDrive d'abord
+        kdrive.rename(f["id"], nouveau_nom(f["chemin"]).rsplit("/", 1)[1])
+        local = CACHE / f["chemin"]
+        if local.exists():
+            local.rename(CACHE / nouveau_nom(f["chemin"]))
+
+    def modif(idx):
+        q = photo(idx, ancien)
+        q["id"] = nouveau
+        q["tags"]["contexte"] = args.contexte
+        for f in q["fichiers"].values():
+            f["chemin"] = nouveau_nom(f["chemin"])
+        for d in q["derives"]:
+            d["id"] = nouveau + d["id"][len(ancien):]
+            d["fichier"]["chemin"] = nouveau_nom(d["fichier"]["chemin"])
+        for u in q["usages"]:
+            if u.get("derive"):
+                u["derive"] = nouveau + u["derive"][len(ancien):]
+
+    ecrire_index(modif, f"Renommage : {ancien} → {nouveau} (contexte {args.contexte})", commit=args.commit)
+    print(f"{ancien} → {nouveau} ({len(fichiers)} fichier(s) renommé(s) sur kDrive)")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -259,6 +299,8 @@ def main() -> None:
     sub.add_parser("fiche").set_defaults(f=afficher)
     s = sub.add_parser("ignorer"); s.add_argument("numero", type=int); s.set_defaults(f=ignorer)
     s = sub.add_parser("valider"); s.add_argument("--commit", action="store_true"); s.set_defaults(f=valider)
+    s = sub.add_parser("renommer"); s.add_argument("id"); s.add_argument("--contexte", required=True)
+    s.add_argument("--commit", action="store_true"); s.set_defaults(f=renommer)
     s = sub.add_parser("modifier"); s.add_argument("id"); s.add_argument("--description")
     s.add_argument("--tags", help='JSON partiel, ex. \'{"lieu": "bulle", "ambiance": ["calme"]}\'')
     s.add_argument("--zones"); s.add_argument("--type", choices=["photo", "illustration"])
