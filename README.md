@@ -19,6 +19,7 @@ et les métadonnées. Règles complètes : [CLAUDE.md](CLAUDE.md).
 | `scripts/deriver.py` | crops, zooms, formats, styles |
 | `scripts/choisir.py` | requêtes et sélection dans l'index |
 | `scripts/usages.py` | suivi d'utilisation |
+| `scripts/photolib.py` | fonctions communes (index, vocabulaire, règle des 28 jours, planches) |
 | `skill/SKILL.md` | brouillon du skill « nawashi-photos » (non publié) |
 
 ## Mise en route
@@ -29,6 +30,9 @@ export KDRIVE_TOKEN=…    # jeton API Infomaniak, portée « drive » (inutile 
 python scripts/kdrive.py check   # vérifie l'accès et crée l'arborescence manquante
 python scripts/kdrive.py ls originaux
 ```
+
+Flux complets (import, sélection, déclinaisons, usages) : [CLAUDE.md](CLAUDE.md#commandes)
+et [skill/SKILL.md](skill/SKILL.md).
 
 Réseau requis : `api.infomaniak.com` et le serveur de téléchargement du kDrive
 (`1-9-v3-12.download.kdrive.infomaniakusercontent.com`).

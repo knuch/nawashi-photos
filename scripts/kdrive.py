@@ -158,8 +158,14 @@ def root_id() -> int:
     return int(CONFIG["kdrive"]["racine_id"])
 
 
+_RESOLVE_CACHE: dict[str, int] = {}
+
+
 def resolve(rel: str, create: bool = False) -> int:
     """Identifiant du fichier/dossier au chemin relatif `rel` (« previews/512 »)."""
+    rel = rel.strip("/")
+    if rel in _RESOLVE_CACHE:
+        return _RESOLVE_CACHE[rel]
     current = root_id()
     for part in [p for p in rel.strip("/").split("/") if p]:
         found = [f for f in list_dir(current) if f["name"] == part]
@@ -169,6 +175,8 @@ def resolve(rel: str, create: bool = False) -> int:
             current = mkdir(current, part)["id"]
         else:
             raise KDriveError(f"introuvable sur kDrive : {rel}")
+    if rel in CONFIG["kdrive"]["dossiers"]:
+        _RESOLVE_CACHE[rel] = current
     return current
 
 

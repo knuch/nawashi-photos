@@ -35,13 +35,14 @@ gérée par Flavien alias Tengu). Utilisée par des agents Claude ; source du fu
 - Métadonnées dans `index.json` uniquement : jamais dans l'EXIF ni dans les noms de fichiers.
   (Lire l'EXIF à l'import pour la date est permis.)
 - Nommage : minuscules, chiffres, traits d'union ; ni accents, ni espaces, ni caractères spéciaux.
-  - Original : `2026-11-08-rope-jam-bulle-001.jpg` (`<date>-<contexte>-<lieu>-<NNN>`)
-  - Dérivé : `2026-11-08-rope-jam-bulle-001-crop-mains-insta-4x5-nb.jpg`
+  - Original : `2026-11-12-rope-jam-001.jpg` = `<date d'import>-<contexte>-<NNN>` (numéro par date + contexte ;
+    pas de lieu dans le nom, le lieu est un tag)
+  - Dérivé : `2026-11-12-rope-jam-001-crop-mains-insta-4x5-nb.jpg` = `<id>-<nature>-<sujet>-<format>-<style>`
   - Renommer/réorganiser : toujours par un script qui met à jour `index.json` en même temps.
 - Avant d'écrire `index.json` : le relire, ne modifier que les entrées concernées, puis commiter.
 
 ## Crédits et autorisations
-- Toutes les photos sont de Flavien ; crédit = son compte Instagram (`config.json` → `credit_defaut`).
+- Toutes les photos sont de Flavien ; crédit = **@nawashi.ch** (`config.json` → `credit_defaut`).
 - Toutes les personnes photographiées ont donné un consentement explicite et écrit pour la
   communication nawashi.ch sur toutes les plateformes, avec nom et identification :
   statut par défaut `ecrit-confirme`, publiable partout.
@@ -54,7 +55,11 @@ gérée par Flavien alias Tengu). Utilisée par des agents Claude ; source du fu
 Vocabulaire fermé dans `vocabulaire.json` ; une valeur n'est ajoutée que si aucune existante
 ne convient (avec l'accord de Flavien). Orientation, dimensions et ratio sont calculés.
 Chaque photo a une description courte rédigée une fois à l'import (pose, cadrage, ambiance,
-zones intéressantes pour un crop).
+zones intéressantes pour un crop), plus des `zones` facultatives (fractions 0–1) pour les crops.
+
+Lieux (`vocabulaire.json` → `lieu.libelles`) : `bulle` = **« salle de pole à Bulle »**, toujours
+générique, ne jamais nommer l'entité qui accueille ; `lafabrik-cucheturelle` = LaFabrik,
+Cucheturelle (Forum des cordes).
 
 ## Déclinaisons
 - `formats.json` : insta-4x5 1080×1350, story-9x16 1080×1920, entete-16x9 1920×1080,
@@ -68,10 +73,25 @@ zones intéressantes pour un crop).
 ## Suivi d'utilisation
 - Chaque utilisation : date, canal, skill, référence du post, statut `prevu` (annulable → `annule`).
 - Une utilisation compte dès que le visuel final est livré. Un dérivé compte pour sa photo d'origine.
-- **Règle stricte** : une photo (dérivés compris) utilisée dans les 4 dernières semaines (28 jours)
-  est exclue, sauf demande explicite. Sinon priorité aux moins utilisées.
+- **Règle stricte** : une photo (dérivés compris) ayant un usage `prevu` à moins de 28 jours de la
+  date visée, **avant ou après** (un post programmé bloque déjà la photo), est exclue, sauf demande
+  explicite (`--inclure-recentes` / `--forcer`). Sinon priorité aux moins utilisées.
 
 ## Import (« j'ai ajouté des photos »)
 Lister `a-importer/` → attribuer un identifiant et renommer → previews 512 et 1000 px →
 rédiger la description → proposer les tags → **après accord**, déplacer vers `originaux/`
 et mettre à jour l'index, puis commiter.
+
+## Commandes
+```sh
+python scripts/kdrive.py check                       # accès + arborescence
+python scripts/importer.py preparer                  # fiche + planche contact (cache/import/)
+python scripts/importer.py valider --commit          # après accord de Flavien
+python scripts/choisir.py chercher --plan mains --format insta-4x5 [--date …] [--json]
+python scripts/choisir.py preview <id>               # preview 512 en cache, pour vérifier
+python scripts/deriver.py creer <id> --nature crop --sujet mains --zone mains --format insta-4x5
+python scripts/deriver.py galerie --html             # propositions numérotées
+python scripts/deriver.py trier --retirer 2,5 --commit
+python scripts/usages.py ajouter <id-photo-ou-derive> --canal instagram --skill … --reference … --date … --commit
+```
+`cache/` (gitignoré) garde les images téléchargées et générées. Après un commit, `git push`.

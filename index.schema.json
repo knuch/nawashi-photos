@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Index de la photothèque nawashi.ch",
-  "description": "Seule source de vérité des métadonnées. PROPOSITION v1 — à valider par Flavien.",
+  "description": "Seule source de vérité des métadonnées. v1 validée le 2026-11-12.",
   "type": "object",
   "required": ["schema_version", "photos"],
   "properties": {
@@ -28,7 +28,7 @@
       "type": "object",
       "required": ["id", "type", "fichiers", "largeur", "hauteur", "orientation", "description", "tags", "autorisation", "importe_le", "derives", "usages"],
       "properties": {
-        "id": {"$ref": "#/$defs/slug", "description": "= nom du fichier original sans .jpg, ex. 2026-11-08-rope-jam-bulle-001"},
+        "id": {"$ref": "#/$defs/slug", "description": "<date-import>-<contexte>-<NNN> = nom du fichier original sans .jpg, ex. 2026-11-12-rope-jam-001. Le lieu est un tag, pas une partie du nom."},
         "type": {"enum": ["photo", "illustration"]},
         "date_prise": {"$ref": "#/$defs/date", "description": "Lue dans l'EXIF à l'import (l'EXIF n'est jamais écrit)."},
         "nom_import": {"type": "string", "description": "Nom du fichier tel que déposé dans a-importer/ (traçabilité)."},
@@ -74,7 +74,7 @@
             "lieu": {"type": ["string", "null"]}
           }
         },
-        "credit": {"type": ["string", "null"], "description": "null = crédit par défaut (compte Instagram de Flavien, config.json)."},
+        "credit": {"type": ["string", "null"], "description": "null = crédit par défaut @nawashi.ch (config.json → credit_defaut)."},
         "autorisation": {
           "type": "object",
           "required": ["statut"],
@@ -108,7 +108,7 @@
       "type": "object",
       "required": ["id", "nature", "fichier", "statut", "recette", "cree_le"],
       "properties": {
-        "id": {"$ref": "#/$defs/slug", "description": "<id-photo>-<nature>-<sujet>-<format>-<style>, parties absentes omises. Ex. 2026-11-08-rope-jam-bulle-001-crop-mains-insta-4x5-nb"},
+        "id": {"$ref": "#/$defs/slug", "description": "<id-photo>-<nature>-<sujet>-<format>-<style>, parties absentes omises. Ex. 2026-11-12-rope-jam-001-crop-mains-insta-4x5-nb"},
         "nature": {"enum": ["crop", "zoom", "format", "style"]},
         "sujet": {"$ref": "#/$defs/slug", "description": "Ce que montre le crop/zoom : mains, noeud, visage…"},
         "format": {"type": ["string", "null"], "description": "Clé de formats.json."},
@@ -142,7 +142,7 @@
         "skill": {"type": "string", "description": "Skill qui a produit le visuel, ex. nawashi-evenements."},
         "reference": {"type": ["string", "null"], "description": "Référence du post : slug, URL, id Metricool…"},
         "derive": {"type": ["string", "null"], "description": "id du dérivé utilisé, null si l'original."},
-        "statut": {"enum": ["prevu", "annule"], "description": "Créé en « prevu » dès que le visuel final est livré (compte dès ce moment) ; « annule » ne compte plus."},
+        "statut": {"enum": ["prevu", "annule"], "description": "Créé en « prevu » dès que le visuel final est livré (compte dès ce moment, y compris pour une date future : la photo est bloquée à ±28 jours de cette date) ; « annule » ne compte plus."},
         "note": {"type": ["string", "null"]}
       }
     }

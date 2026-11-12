@@ -2,12 +2,25 @@
   "kdrive": {
     "racine_chemin": "/Private/nawashi/nawashi-photos",
     "racine_id": 8,
-    "dossiers": ["a-importer", "originaux", "previews", "previews/512", "previews/1000", "derives"]
+    "dossiers": [
+      "a-importer",
+      "originaux",
+      "previews",
+      "previews/512",
+      "previews/1000",
+      "derives"
+    ]
   },
-  "credit_defaut": null,
+  "credit_defaut": "@nawashi.ch",
   "regles": {
     "exclusion_jours": 28,
-    "preview_tailles": [512, 1000],
-    "jpeg_qualite": {"preview": 82, "derive": 90}
+    "preview_tailles": [
+      512,
+      1000
+    ],
+    "jpeg_qualite": {
+      "preview": 82,
+      "derive": 90
+    }
   }
 }

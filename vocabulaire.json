@@ -1,12 +1,91 @@
 {
   "_doc": "Vocabulaire fermé des tags. Une valeur n'est ajoutée que si aucune existante ne convient (et après accord de Flavien). 'unique' = une seule valeur par photo, sinon liste.",
-  "type":         {"unique": true,  "valeurs": ["photo", "illustration"]},
-  "plan":         {"unique": false, "valeurs": ["ensemble", "plan-moyen", "detail", "mains", "visage", "noeud", "corde-seule"]},
-  "technique":    {"unique": false, "valeurs": ["takate-kote", "futomomo", "hip-harness", "chest-harness", "sol", "semi-suspension", "suspension"]},
-  "contexte":     {"unique": true,  "valeurs": ["cours", "rope-jam", "atelier", "forum", "seance-photo", "performance"]},
-  "personnes":    {"unique": true,  "valeurs": ["solo", "duo", "groupe", "aucune"]},
-  "ambiance":     {"unique": false, "valeurs": ["intime", "calme", "joyeux", "intense", "dramatique"]},
-  "lumiere":      {"unique": false, "valeurs": ["naturelle", "studio", "basse-lumiere", "contre-jour"]},
-  "espace-texte": {"unique": true,  "valeurs": ["oui", "non"]},
-  "lieu":         {"unique": true,  "valeurs": []}
+  "type": {
+    "unique": true,
+    "valeurs": [
+      "photo",
+      "illustration"
+    ]
+  },
+  "plan": {
+    "unique": false,
+    "valeurs": [
+      "ensemble",
+      "plan-moyen",
+      "detail",
+      "mains",
+      "visage",
+      "noeud",
+      "corde-seule"
+    ]
+  },
+  "technique": {
+    "unique": false,
+    "valeurs": [
+      "takate-kote",
+      "futomomo",
+      "hip-harness",
+      "chest-harness",
+      "sol",
+      "semi-suspension",
+      "suspension"
+    ]
+  },
+  "contexte": {
+    "unique": true,
+    "valeurs": [
+      "cours",
+      "rope-jam",
+      "atelier",
+      "forum",
+      "seance-photo",
+      "performance"
+    ]
+  },
+  "personnes": {
+    "unique": true,
+    "valeurs": [
+      "solo",
+      "duo",
+      "groupe",
+      "aucune"
+    ]
+  },
+  "ambiance": {
+    "unique": false,
+    "valeurs": [
+      "intime",
+      "calme",
+      "joyeux",
+      "intense",
+      "dramatique"
+    ]
+  },
+  "lumiere": {
+    "unique": false,
+    "valeurs": [
+      "naturelle",
+      "studio",
+      "basse-lumiere",
+      "contre-jour"
+    ]
+  },
+  "espace-texte": {
+    "unique": true,
+    "valeurs": [
+      "oui",
+      "non"
+    ]
+  },
+  "lieu": {
+    "unique": true,
+    "valeurs": [
+      "bulle",
+      "lafabrik-cucheturelle"
+    ],
+    "libelles": {
+      "bulle": "salle de pole à Bulle — rester générique, ne jamais nommer l'entité qui accueille",
+      "lafabrik-cucheturelle": "LaFabrik, Cucheturelle (Forum des cordes)"
+    }
+  }
 }
