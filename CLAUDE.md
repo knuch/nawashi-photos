@@ -1,8 +1,8 @@
 # nawashi-photos
 
 Boîte à outils de la photothèque de nawashi.ch (association de shibari, Suisse romande,
-gérée par Flavien alias Tengu). Utilisée par des agents Claude ; source du futur skill
-« nawashi-photos » du plugin nawashi. Réponds en français et tutoie Flavien.
+gérée par Flavien alias Tengu). Utilisée par des agents Claude ; source du skill
+« nawashi-photos » du plugin nawashi (le skill du plugin renvoie à ce dépôt). Réponds en français et tutoie Flavien.
 
 ## Architecture (décidée — ne pas remettre en cause sans demander)
 - **Images sur kDrive Infomaniak, jamais dans le repo** (`.gitignore` bloque jpg/png/webp/tif).

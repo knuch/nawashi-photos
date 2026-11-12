@@ -20,7 +20,8 @@ et les métadonnées. Règles complètes : [CLAUDE.md](CLAUDE.md).
 | `scripts/choisir.py` | requêtes et sélection dans l'index |
 | `scripts/usages.py` | suivi d'utilisation |
 | `scripts/photolib.py` | fonctions communes (index, vocabulaire, règle des 28 jours, planches) |
-| `skill/SKILL.md` | brouillon du skill « nawashi-photos » (non publié) |
+| `skill/SKILL.md` | flux du skill « nawashi-photos » (le skill du plugin nawashi y renvoie) |
+| `scripts/rendre_canvas.py` | rendu PNG d'un canvas Claude pour l'export Canva |
 
 ## Mise en route
 ```sh

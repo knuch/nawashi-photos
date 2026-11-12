@@ -3,8 +3,6 @@ name: nawashi-photos
 description: Choisir, décliner et suivre l'utilisation des photos de la photothèque nawashi.ch (kDrive) pour les posts Instagram, stories, le site et les newsletters — sélection par l'index, crops/formats par canal, crédit @nawashi.ch, autorisations et règle des 28 jours. À utiliser dès qu'un visuel nawashi.ch a besoin d'une photo, ou quand Flavien dit « j'ai ajouté des photos ».
 ---
 
-<!-- BROUILLON — ne pas publier dans le plugin avant validation par Flavien. -->
-
 # nawashi-photos
 
 Photothèque : images sur kDrive (`/Private/nawashi/nawashi-photos`), métadonnées dans
